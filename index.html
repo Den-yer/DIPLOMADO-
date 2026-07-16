@@ -1,529 +1,445 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Portafolio Digital de Evaluación del Aprendizaje</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
+    <title>Programa de Estudio - Entornos Virtuales de Aprendizaje y Gestión de LMS</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9; /* slate-100 */
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #ebf8ff;
+            --text-color: #2d3748;
+            --border-color: #e2e8f0;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #1e293b; } /* Oscuro para el sidebar */
-        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* Scroll margin para que el header no tape el contenido al hacer clic en un enlace */
-        .scroll-mt {
-            scroll-margin-top: 2rem;
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            background-color: var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #4a5568;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .hour-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .hour-num {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .hour-label {
+            font-size: 0.75rem;
+            color: #718096;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .text-block {
+            background: #fff;
+            padding: 1rem 0;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #3182ce;
+            padding: 1.25rem;
+            border-radius: 4px;
+            font-style: italic;
+            margin: 1rem 0;
+        }
+
+        .unit-header {
+            background-color: #edf2f7;
+            padding: 1rem 1.25rem;
+            border-radius: 6px 6px 0 0;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .unit-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .unit-comp {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-top: 0.25rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .eval-table th {
+            background-color: var(--secondary-color);
+        }
+
+        .percentage {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            text-align: center;
         }
 
         @media (max-width: 768px) {
-            .scroll-mt {
-                scroll-margin-top: 180px; /* Más margen en móvil debido al menú superior */
+            .hours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            tr {
+                border: 1px solid var(--border-color);
+                margin-bottom: 1rem;
+                border-radius: 6px;
+            }
+            
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+            }
+            
+            td:before {
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                color: var(--primary-color);
+            }
+            
+            .content-table td:nth-of-type(1):before { content: "Contenido Conceptual"; }
+            .content-table td:nth-of-type(2):before { content: "Contenido Procedimental"; }
+            .content-table td:nth-of-type(3):before { content: "Contenido Actitudinal"; }
+            
+            .eval-table td:nth-of-type(1):before { content: "Actividad"; }
+            .eval-table td:nth-of-type(2):before { content: "Temática"; }
+            .eval-table td:nth-of-type(3):before { content: "Porcentaje"; }
+            
+            .percentage {
+                text-align: left;
             }
         }
-        
-        /* Animación para el resultado */
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-result {
-            animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* Ocultar barra de scroll en navegaciones horizontales (móvil) */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-slate-800 antialiased flex flex-col md:flex-row min-h-screen">
+<body>
 
-    <!-- SIDEBAR (Barra Lateral Izquierda) -->
-    <aside class="w-full md:w-80 bg-slate-900 text-slate-300 flex flex-col md:fixed md:h-screen z-50 shadow-2xl transition-all">
-        
-        <!-- Perfil y Más Info (Sección Superior del Sidebar) -->
-        <div class="p-8 border-b border-slate-800 bg-slate-950/50">
-            <div class="flex items-center gap-4 mb-6">
-                <!-- Avatar Placeholder -->
-                <div class="relative">
-                    <img src="https://placehold.co/100x100/2563eb/ffffff?text=DC" alt="Denyer Caliaman" class="w-16 h-16 rounded-full border-2 border-blue-500 shadow-lg object-cover">
-                    <div class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full" title="Online"></div>
-                </div>
-                <div>
-                    <h2 class="text-white font-bold text-lg leading-tight">Denyer Caliaman</h2>
-                    <p class="text-blue-400 text-sm font-medium">Diseñador Web & Docente</p>
-                </div>
+<div class="container">
+    <header>
+        <h1>Universidad Dr. José Gregorio Hernández</h1>
+        <h2>Programa de Estudio</h2>
+    </header>
+
+    <div class="content">
+        <div class="meta-grid">
+            <div class="meta-item">
+                <span class="meta-label">Programa</span>
+                <span class="meta-value">Tecnología Educativa / Arquitectura de Sistemas Educativos</span>
             </div>
-
-            <!-- "Más info" solicitada -->
-            <div class="space-y-3">
-                <div class="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50">
-                    <div class="flex justify-between text-xs mb-1">
-                        <span class="font-medium text-slate-400">Progreso Unidad 4</span>
-                        <span class="text-emerald-400 font-bold">100%</span>
-                    </div>
-                    <div class="w-full bg-slate-700 rounded-full h-1.5">
-                        <div class="bg-gradient-to-r from-blue-500 to-emerald-400 h-1.5 rounded-full" style="width: 100%"></div>
-                    </div>
-                </div>
-                
-                <div class="flex gap-2">
-                    <span class="inline-flex items-center gap-1 bg-blue-900/30 text-blue-300 text-xs px-2 py-1 rounded border border-blue-800/50">
-                        <i class="ph-fill ph-check-circle"></i> Evaluación EVA
-                    </span>
-                    <span class="inline-flex items-center gap-1 bg-purple-900/30 text-purple-300 text-xs px-2 py-1 rounded border border-purple-800/50">
-                        <i class="ph-fill ph-users"></i> Colaborativo
-                    </span>
-                </div>
+            <div class="meta-item">
+                <span class="meta-label">Unidad Curricular</span>
+                <span class="meta-value">Entornos Virtuales de Aprendizaje y Gestión de LMS</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Eje al que pertenece</span>
+                <span class="meta-value">Formación Profesional Específica</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Líneas de Investigación</span>
+                <span class="meta-value">Tecnología Educativa / Diseño Instruccional</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Período</span>
+                <span class="meta-value">VI Trimestre</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Duración</span>
+                <span class="meta-value">12 Semanas</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Período de Actualización</span>
+                <span class="meta-value">2026</span>
             </div>
         </div>
 
-        <!-- Menú de Navegación -->
-        <nav class="flex-1 overflow-y-auto py-6 px-4 no-scrollbar">
-            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 px-4">Contenido del Portafolio</p>
-            
-            <ul class="flex md:flex-col overflow-x-auto md:overflow-x-visible gap-2 no-scrollbar">
-                <li>
-                    <a href="#presentacion" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-blue-600 hover:text-white transition-all group whitespace-nowrap">
-                        <i class="ph ph-identification-card text-xl text-slate-400 group-hover:text-blue-200 transition-colors"></i>
-                        <span class="font-medium">1. Presentación</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#rubrica" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-blue-600 hover:text-white transition-all group whitespace-nowrap">
-                        <i class="ph ph-table text-xl text-slate-400 group-hover:text-blue-200 transition-colors"></i>
-                        <span class="font-medium">2. Rúbrica Analítica</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#autoevaluacion" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-blue-600 hover:text-white transition-all group whitespace-nowrap">
-                        <i class="ph ph-brain text-xl text-slate-400 group-hover:text-blue-200 transition-colors"></i>
-                        <span class="font-medium">3. Autoevaluación</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#feedback" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-blue-600 hover:text-white transition-all group whitespace-nowrap">
-                        <i class="ph ph-chat-centered-text text-xl text-slate-400 group-hover:text-blue-200 transition-colors"></i>
-                        <span class="font-medium">4. Filosofía Feedback</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#referencias" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-blue-600 hover:text-white transition-all group whitespace-nowrap">
-                        <i class="ph ph-books text-xl text-slate-400 group-hover:text-blue-200 transition-colors"></i>
-                        <span class="font-medium">5. Referencias</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Footer del Sidebar -->
-        <div class="p-6 border-t border-slate-800 text-center md:text-left text-sm text-slate-500 bg-slate-950/30">
-            <p>© 2024 Denyer Caliaman</p>
-            <p class="text-xs mt-1">Diplomado en Educación Virtual</p>
-        </div>
-    </aside>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <!-- Margen izquierdo para no superponerse con el sidebar fijo en desktop -->
-    <main class="flex-1 md:ml-80 relative">
-        
-        <!-- Header Hero -->
-        <header class="bg-white border-b border-slate-200 px-8 py-12 md:py-16 relative overflow-hidden">
-            <!-- Patrón de fondo sutil -->
-            <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#1e3a8a 2px, transparent 2px); background-size: 30px 30px;"></div>
-            
-            <div class="max-w-4xl relative z-10">
-                <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-lg text-sm font-bold tracking-wide mb-4 border border-blue-100 uppercase">
-                    <i class="ph-fill ph-folder-open"></i> Unidad 4
-                </span>
-                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-                    E-Portafolio Digital de <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Evaluación del Aprendizaje</span>
-                </h1>
-                <p class="text-slate-600 text-lg md:text-xl font-medium max-w-2xl">
-                    Instrumentos y Técnicas de Evaluación en Entornos Virtuales de Aprendizaje (EVA).
-                </p>
+        <div class="hours-grid">
+            <div class="hour-card">
+                <div class="hour-num">03</div>
+                <div class="hour-label">Horas Teóricas</div>
             </div>
-        </header>
-
-        <!-- Contenedor de Secciones -->
-        <div class="p-6 md:p-10 lg:p-12 max-w-5xl space-y-12 md:space-y-16">
-
-            <!-- SECCIÓN 1: PRESENTACIÓN -->
-            <section id="presentacion" class="scroll-mt">
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shadow-inner">
-                        <i class="ph-fill ph-identification-card text-2xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-slate-800">Sección 1. Presentación</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    <!-- Tarjetas de Información -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i class="ph ph-user text-lg text-blue-500"></i> Datos del Docente</h3>
-                        <ul class="space-y-3 text-slate-700 text-sm">
-                            <li class="flex justify-between items-center border-b border-slate-50 pb-2"><strong class="text-slate-900">Nombre:</strong> <span>Denyer Caliaman</span></li>
-                            <li class="flex justify-between items-center border-b border-slate-50 pb-2"><strong class="text-slate-900">Asignatura:</strong> <span>Competencias Digitales</span></li>
-                            <li class="flex justify-between items-center"><strong class="text-slate-900">Modalidad:</strong> <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md font-medium">Virtual</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i class="ph ph-books text-lg text-indigo-500"></i> Unidad Temática</h3>
-                        <p class="text-slate-700 font-medium leading-relaxed">Creación de Proyectos Colaborativos Digitales.</p>
-                    </div>
-
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2"><i class="ph ph-target text-lg text-purple-500"></i> Competencia</h3>
-                        <p class="text-slate-700 text-sm leading-relaxed">Diseñar y presentar proyectos digitales colaborativos utilizando herramientas tecnológicas y estrategias de trabajo en línea.</p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-slate-800 rounded-2xl p-8 text-white shadow-lg">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-300">
-                            <i class="ph-fill ph-lightbulb"></i> Justificación Didáctica
-                        </h3>
-                        <p class="text-slate-300 leading-relaxed text-sm">
-                            La evaluación en entornos virtuales debe favorecer el aprendizaje significativo, la autonomía y la reflexión crítica. Este e-portafolio integra instrumentos de evaluación auténtica basados en la socioformación de Tobón (2007), la metacognición propuesta por Gros (2011) y las estrategias de retroalimentación descritas por Alonso y Blázquez (2012).
-                        </p>
-                    </div>
-
-                    <div class="bg-blue-50 rounded-2xl p-8 text-blue-900 border border-blue-100">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-700">
-                            <i class="ph-fill ph-flag-checkered"></i> Objetivo de Aprendizaje
-                        </h3>
-                        <p class="text-blue-800/80 leading-relaxed text-sm font-medium">
-                            Al finalizar la unidad, el estudiante será capaz de elaborar y presentar un proyecto digital colaborativo utilizando herramientas tecnológicas de manera autónoma, creativa y eficiente.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN 2: RÚBRICA -->
-            <section id="rubrica" class="scroll-mt">
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-inner">
-                        <i class="ph-fill ph-squares-four text-2xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-slate-800">Sección 2. Rúbrica Analítica Socioformativa</h2>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div class="overflow-x-auto no-scrollbar">
-                        <table class="w-full text-left whitespace-nowrap md:whitespace-normal">
-                            <thead>
-                                <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500">
-                                    <th class="px-6 py-4 font-bold w-1/6">Criterio de Evaluación</th>
-                                    <th class="px-6 py-4 font-bold w-1/6">Preformal <span class="block text-[10px] font-normal mt-1 text-slate-400">Insuficiente</span></th>
-                                    <th class="px-6 py-4 font-bold w-1/6">Receptivo <span class="block text-[10px] font-normal mt-1 text-slate-400">Regular</span></th>
-                                    <th class="px-6 py-4 font-bold w-1/6 text-blue-600">Resolutivo <span class="block text-[10px] font-normal mt-1 text-blue-400">Bueno</span></th>
-                                    <th class="px-6 py-4 font-bold w-1/6 text-indigo-600">Autónomo <span class="block text-[10px] font-normal mt-1 text-indigo-400">Muy Bueno</span></th>
-                                    <th class="px-6 py-4 font-bold w-1/6 text-emerald-600">Estratégico <span class="block text-[10px] font-normal mt-1 text-emerald-400">Excelente</span></th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-5 bg-slate-50/50 font-bold text-slate-800">Planificación del Proyecto</td>
-                                    <td class="px-6 py-5">Presenta ideas vagas y requiere guía total.</td>
-                                    <td class="px-6 py-5">Identifica tareas básicas siguiendo instrucciones.</td>
-                                    <td class="px-6 py-5">Organiza actividades y recursos esenciales.</td>
-                                    <td class="px-6 py-5">Diseña un plan coherente y argumentado.</td>
-                                    <td class="px-6 py-5 font-medium text-slate-800 bg-emerald-50/30 border-l border-emerald-100">Integra innovación y mejora continua.</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-5 bg-slate-50/50 font-bold text-slate-800">Uso de Herramientas Digitales</td>
-                                    <td class="px-6 py-5">Dificultades significativas.</td>
-                                    <td class="px-6 py-5">Utiliza funciones básicas.</td>
-                                    <td class="px-6 py-5">Usa correctamente las herramientas.</td>
-                                    <td class="px-6 py-5">Selecciona herramientas adecuadas con autonomía.</td>
-                                    <td class="px-6 py-5 font-medium text-slate-800 bg-emerald-50/30 border-l border-emerald-100">Integra múltiples herramientas de forma innovadora.</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-5 bg-slate-50/50 font-bold text-slate-800">Trabajo Colaborativo</td>
-                                    <td class="px-6 py-5">Participación mínima.</td>
-                                    <td class="px-6 py-5">Colabora de forma limitada.</td>
-                                    <td class="px-6 py-5">Cumple responsabilidades asignadas.</td>
-                                    <td class="px-6 py-5">Participa activamente y aporta soluciones.</td>
-                                    <td class="px-6 py-5 font-medium text-slate-800 bg-emerald-50/30 border-l border-emerald-100">Lidera y fortalece el aprendizaje colectivo.</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-5 bg-slate-50/50 font-bold text-slate-800">Calidad de la Solución</td>
-                                    <td class="px-6 py-5">Carece de coherencia.</td>
-                                    <td class="px-6 py-5">Solución básica.</td>
-                                    <td class="px-6 py-5">Propuesta funcional.</td>
-                                    <td class="px-6 py-5">Argumentación sólida.</td>
-                                    <td class="px-6 py-5 font-medium text-slate-800 bg-emerald-50/30 border-l border-emerald-100">Innovación e impacto significativo.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN 3: AUTOEVALUACIÓN -->
-            <section id="autoevaluacion" class="scroll-mt">
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 shadow-inner">
-                        <i class="ph-fill ph-brain text-2xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-slate-800">Instrumento de Autoevaluación</h2>
-                </div>
-
-                <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 md:p-10 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -mr-10 -mt-10"></div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                        <div class="space-y-6">
-                            <div class="space-y-2">
-                                <label class="block text-sm font-bold text-slate-700">1. Participé activamente en el equipo</label>
-                                <div class="relative">
-                                    <select id="p1" class="w-full appearance-none px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-slate-600 font-medium cursor-pointer shadow-sm">
-                                        <option value="4">Siempre (4 pts)</option>
-                                        <option value="3">Casi Siempre (3 pts)</option>
-                                        <option value="2">Algunas Veces (2 pts)</option>
-                                        <option value="1">Nunca (1 pt)</option>
-                                    </select>
-                                    <i class="ph ph-caret-down absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                                </div>
-                            </div>
-
-                            <div class="space-y-2">
-                                <label class="block text-sm font-bold text-slate-700">2. Cumplí las tareas asignadas</label>
-                                <div class="relative">
-                                    <select id="p2" class="w-full appearance-none px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-slate-600 font-medium cursor-pointer shadow-sm">
-                                        <option value="4">Siempre (4 pts)</option>
-                                        <option value="3">Casi Siempre (3 pts)</option>
-                                        <option value="2">Algunas Veces (2 pts)</option>
-                                        <option value="1">Nunca (1 pt)</option>
-                                    </select>
-                                    <i class="ph ph-caret-down absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-6">
-                            <div class="space-y-2">
-                                <label class="block text-sm font-bold text-slate-700">3. Utilicé correctamente las herramientas digitales</label>
-                                <div class="relative">
-                                    <select id="p3" class="w-full appearance-none px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-slate-600 font-medium cursor-pointer shadow-sm">
-                                        <option value="4">Siempre (4 pts)</option>
-                                        <option value="3">Casi Siempre (3 pts)</option>
-                                        <option value="2">Algunas Veces (2 pts)</option>
-                                        <option value="1">Nunca (1 pt)</option>
-                                    </select>
-                                    <i class="ph ph-caret-down absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                                </div>
-                            </div>
-
-                            <div class="space-y-2">
-                                <label class="block text-sm font-bold text-slate-700">4. Reflexioné sobre mis fortalezas y debilidades</label>
-                                <div class="relative">
-                                    <select id="p4" class="w-full appearance-none px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-slate-600 font-medium cursor-pointer shadow-sm">
-                                        <option value="4">Siempre (4 pts)</option>
-                                        <option value="3">Casi Siempre (3 pts)</option>
-                                        <option value="2">Algunas Veces (2 pts)</option>
-                                        <option value="1">Nunca (1 pt)</option>
-                                    </select>
-                                    <i class="ph ph-caret-down absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 pointer-events-none"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-10 border-t border-slate-100 pt-8 flex flex-col md:flex-row items-center gap-6 justify-between">
-                        <button onclick="calcular()" class="w-full md:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                            <i class="ph-bold ph-calculator text-xl"></i> Calcular Resultado Total
-                        </button>
-
-                        <!-- Contenedor de Resultado (Oculto inicialmente) -->
-                        <div id="resultado" class="hidden w-full md:w-1/2 bg-emerald-50/80 border border-emerald-200 rounded-2xl p-6">
-                            <!-- Inyectado via JS -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN 4: FEEDBACK -->
-            <section id="feedback" class="scroll-mt">
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 shadow-inner">
-                        <i class="ph-fill ph-lightbulb text-2xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-slate-800">Sección 3. Filosofía de Mediación</h2>
-                </div>
-
-                <div class="bg-white p-8 md:p-10 rounded-3xl border border-slate-200 shadow-sm">
-                    <p class="text-slate-600 text-lg border-l-4 border-orange-400 pl-5 py-2 bg-orange-50/50 rounded-r-xl font-medium mb-10">
-                        La retroalimentación será continua, personalizada y orientada al mejoramiento progresivo del estudiante dentro del Entorno Virtual de Aprendizaje.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-                        <!-- Card Feedback -->
-                        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100">
-                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 shadow-sm">
-                                <i class="ph-fill ph-chat-circle-dots text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-4">Estrategias de Feedback</h3>
-                            <ul class="space-y-3 text-slate-600">
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-check text-emerald-500 mt-1"></i> Comentarios en actividades y foros.</li>
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-check text-emerald-500 mt-1"></i> Retroalimentación individualizada.</li>
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-check text-emerald-500 mt-1"></i> Uso permanente de rúbricas analíticas.</li>
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-check text-emerald-500 mt-1"></i> Sesiones sincrónicas de acompañamiento.</li>
-                            </ul>
-                        </div>
-
-                        <!-- Card Feedforward -->
-                        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100">
-                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-6 shadow-sm">
-                                <i class="ph-fill ph-rocket-launch text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-4">Estrategias de Feedforward</h3>
-                            <ul class="space-y-3 text-slate-600">
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-arrow-right text-blue-500 mt-1"></i> Orientaciones para actividades futuras.</li>
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-arrow-right text-blue-500 mt-1"></i> Metas de mejora personalizadas.</li>
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-arrow-right text-blue-500 mt-1"></i> Recomendación de recursos complementarios.</li>
-                                <li class="flex items-start gap-3"><i class="ph-bold ph-arrow-right text-blue-500 mt-1"></i> Seguimiento continuo del progreso.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-lg bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] relative overflow-hidden">
-                        <div class="relative z-10 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-                            <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md shrink-0 border border-white/20">
-                                <i class="ph-fill ph-users-three text-3xl text-blue-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-white mb-2">Acompañamiento Humano</h3>
-                                <p class="text-slate-300 text-sm leading-relaxed max-w-2xl">
-                                    El docente actuará como mediador del aprendizaje, promoviendo la autonomía, la participación activa, la reflexión crítica y el aprendizaje colaborativo.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN 5: REFERENCIAS -->
-            <section id="referencias" class="scroll-mt">
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 rounded-lg bg-slate-200 flex items-center justify-center text-slate-600 shadow-inner">
-                        <i class="ph-fill ph-books text-2xl"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-800">Referencias Bibliográficas</h2>
-                </div>
-                
-                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                    <ul class="space-y-4 text-slate-600 text-sm">
-                        <li class="flex items-start gap-3 hover:text-blue-600 transition-colors p-2 hover:bg-slate-50 rounded-lg">
-                            <i class="ph-fill ph-bookmark-simple text-blue-500 mt-0.5 text-lg shrink-0"></i> 
-                            <span><strong>Alonso, C. & Blázquez, F.</strong> (2012). El docente de educación virtual.</span>
-                        </li>
-                        <li class="flex items-start gap-3 hover:text-blue-600 transition-colors p-2 hover:bg-slate-50 rounded-lg">
-                            <i class="ph-fill ph-bookmark-simple text-blue-500 mt-0.5 text-lg shrink-0"></i> 
-                            <span><strong>Bautista, G., Borges, F. & Forés, A.</strong> (2006). Didáctica universitaria en entornos virtuales.</span>
-                        </li>
-                        <li class="flex items-start gap-3 hover:text-blue-600 transition-colors p-2 hover:bg-slate-50 rounded-lg">
-                            <i class="ph-fill ph-bookmark-simple text-blue-500 mt-0.5 text-lg shrink-0"></i> 
-                            <span><strong>Gros, B.</strong> (2011). Evolución y retos de la educación virtual.</span>
-                        </li>
-                        <li class="flex items-start gap-3 hover:text-blue-600 transition-colors p-2 hover:bg-slate-50 rounded-lg">
-                            <i class="ph-fill ph-bookmark-simple text-blue-500 mt-0.5 text-lg shrink-0"></i> 
-                            <span><strong>Quijada, M.</strong> (2014). Evaluación y aprendizaje colaborativo en EVA.</span>
-                        </li>
-                        <li class="flex items-start gap-3 hover:text-blue-600 transition-colors p-2 hover:bg-slate-50 rounded-lg">
-                            <i class="ph-fill ph-bookmark-simple text-blue-500 mt-0.5 text-lg shrink-0"></i> 
-                            <span><strong>Tobón, S.</strong> (2007). Formación basada en competencias.</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <script>
-        function calcular(){
-            // Mantenemos la lógica original exacta de suma y cálculo de porcentajes
-            let total =
-            parseInt(document.getElementById("p1").value) +
-            parseInt(document.getElementById("p2").value) +
-            parseInt(document.getElementById("p3").value) +
-            parseInt(document.getElementById("p4").value);
-
-            let porcentaje = (total/16)*100;
-            let nivel="";
-
-            // Colores dinámicos dependiendo del nivel
-            let colorClase = "";
-            let iconoNivel = "";
-
-            if(porcentaje >= 90){
-                nivel="Estratégico";
-                colorClase = "text-emerald-700";
-                iconoNivel = "ph-trend-up";
-            }
-            else if(porcentaje >= 80){
-                nivel="Autónomo";
-                colorClase = "text-blue-700";
-                iconoNivel = "ph-rocket-launch";
-            }
-            else if(porcentaje >= 70){
-                nivel="Resolutivo";
-                colorClase = "text-indigo-700";
-                iconoNivel = "ph-wrench";
-            }
-            else if(porcentaje >= 60){
-                nivel="Receptivo";
-                colorClase = "text-orange-600";
-                iconoNivel = "ph-hand";
-            }
-            else{
-                nivel="Preformal";
-                colorClase = "text-red-600";
-                iconoNivel = "ph-warning-circle";
-            }
-
-            const resultado = document.getElementById("resultado");
-            
-            // Animación de aparición
-            resultado.classList.remove("hidden");
-            resultado.classList.remove("animate-result"); 
-            void resultado.offsetWidth; // Trigger reflow para reiniciar animación
-            resultado.classList.add("animate-result");
-
-            // Inyectar HTML estilizado
-            resultado.innerHTML=
-            `
-            <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Resultado de Evaluación</h3>
-            <div class="flex items-center gap-4 mb-2">
-                <div class="text-4xl font-black ${colorClase}">${porcentaje.toFixed(1)}%</div>
+            <div class="hour-card">
+                <div class="hour-num">02</div>
+                <div class="hour-label">Horas Prácticas</div>
             </div>
-            <p class="text-slate-700 flex items-center gap-2 mt-2">
-                <span class="font-medium">Nivel alcanzado:</span> 
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white shadow-sm border border-slate-200 font-bold ${colorClase}">
-                    <i class="ph-fill ${iconoNivel}"></i> ${nivel}
-                </span>
-            </p>
-            `;
-        }
-    </script>
+            <div class="hour-card">
+                <div class="hour-num">05</div>
+                <div class="hour-label">Total Horas</div>
+            </div>
+            <div class="hour-card">
+                <div class="hour-num">03</div>
+                <div class="hour-label">Unidades Crédito</div>
+            </div>
+        </div>
+
+        <section>
+            <h3>Introducción</h3>
+            <div class="text-block">
+                La unidad curricular se enfoca en el estudio integral de los Sistemas de Gestión del Aprendizaje (LMS), los cuales son plataformas digitales diseñadas para crear, administrar, distribuir y evaluar contenidos educativos. En la educación moderna, el dominio de estas herramientas es fundamental para facilitar el aprendizaje híbrido y a distancia, requiriendo profesionales capaces de gestionar su arquitectura, diseño y funcionalidades pedagógicas.
+            </div>
+        </section>
+
+        <section>
+            <h3>Justificación</h3>
+            <div class="text-block">
+                La implementación exitosa de un entorno virtual requiere analizar múltiples factores contextuales, tales como la cultura organizacional, los recursos técnicos y el presupuesto disponible. Esta asignatura prepara a los estudiantes para tomar decisiones estratégicas basadas en criterios clave como la facilidad de uso, la escalabilidad, la integración tecnológica y el costo-beneficio, garantizando un desarrollo tecnológico adaptado a las necesidades de la educación básica, universitaria o corporativa.
+            </div>
+        </section>
+
+        <section>
+            <h3>Competencia de la Unidad Curricular</h3>
+            <div class="highlight-box">
+                Gestiona y configura Entornos Virtuales de Aprendizaje (LMS) aplicando principios de diseño de interfaz (UX/UI), arquitectura de sistemas y estándares de integración tecnológica, para optimizar la distribución de contenidos y la evaluación educativa según las necesidades del contexto institucional.
+            </div>
+        </section>
+
+        <section>
+            <h3>Estructura de Unidades</h3>
+
+            <div class="unit-header">
+                <div class="unit-title">UNIDAD 1: Arquitectura de Sistemas y Diseño de Interfaz en LMS</div>
+                <div class="unit-comp"><strong>Competencia:</strong> Identifica la infraestructura tecnológica y los principios de diseño que garantizan la accesibilidad, usabilidad y escalabilidad de las plataformas educativas digitales.</div>
+            </div>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th style="width: 33%;">Contenido Conceptual</th>
+                        <th style="width: 33%;">Contenido Procedimental</th>
+                        <th style="width: 33%;">Contenido Actitudinal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Definición, importancia y criterios de selección de un Sistema de Gestión del Aprendizaje (LMS).</td>
+                        <td>Análisis de la escalabilidad y capacidad de crecimiento según el número de usuarios y cursos.</td>
+                        <td>Valora la importancia del cumplimiento de estándares de accesibilidad para usuarios diversos.</td>
+                    </tr>
+                    <tr>
+                        <td>Arquitectura de sistemas: Modelos de código abierto, infraestructura Cloud-nativo (SaaS) y despliegues híbridos.</td>
+                        <td>Evaluación de la curva de aprendizaje y la facilidad de navegación para docentes y estudiantes.</td>
+                        <td>Promueve la creación de entornos digitales con un diseño contemporáneo y navegación intuitiva.</td>
+                    </tr>
+                    <tr>
+                        <td>Principios de diseño UX/UI en educación: Minimalismo, flexibilidad y modernidad.</td>
+                        <td>Planificación de requerimientos de infraestructura (servidor propio vs. nube) según el control de datos requerido.</td>
+                        <td>Considera los recursos técnicos y la capacidad de infraestructura institucional de manera responsable.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="unit-header">
+                <div class="unit-title">UNIDAD 2: Funcionalidades Core e Integración Tecnológica</div>
+                <div class="unit-comp"><strong>Competencia:</strong> Administra las herramientas nativas y externas de un LMS para optimizar la gestión de contenidos, la colaboración y el análisis del rendimiento estudiantil.</div>
+            </div>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th style="width: 33%;">Contenido Conceptual</th>
+                        <th style="width: 33%;">Contenido Procedimental</th>
+                        <th style="width: 33%;">Contenido Actitudinal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Herramientas de evaluación, calificación y uso de rúbricas avanzadas en entornos digitales.</td>
+                        <td>Configuración de módulos para la gestión, creación y distribución de contenidos educativos.</td>
+                        <td>Fomenta la comunicación y colaboración efectiva mediante foros y mensajería.</td>
+                    </tr>
+                    <tr>
+                        <td>Integración tecnológica: Uso de APIs REST, estándares LTI (1.3) y conexión con ecosistemas externos.</td>
+                        <td>Interpretación de reportes, dashboards y analíticas de aprendizaje para el seguimiento institucional.</td>
+                        <td>Reconoce la importancia de la capacitación continua del personal docente para el éxito de la plataforma.</td>
+                    </tr>
+                    <tr>
+                        <td>Criterios de implementación y análisis de costo-beneficio institucional.</td>
+                        <td>Ejecución de estrategias de integración con herramientas preexistentes en la institución.</td>
+                        <td>Adapta las soluciones tecnológicas considerando requisitos de cumplimiento normativo y compliance.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>Plan de Evaluación</h3>
+            <table class="eval-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Actividad</th>
+                        <th style="width: 60%;">Temática</th>
+                        <th style="width: 15%; text-align: center;">Porcentaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Proyecto Práctico de Implementación</strong></td>
+                        <td>Diseño de una propuesta de entorno virtual que incluya: la selección de arquitectura (Cloud vs Autoalojado), configuración de herramientas de evaluación y seguimiento, y un esquema de integración mediante estándares LTI.</td>
+                        <td class="percentage">60%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interacción y participación</strong></td>
+                        <td>Intervenciones, debates y resolución de casos sobre los principios de diseño de interfaz (UX/UI) y estrategias de escalabilidad en diferentes contextos (educación básica, universitaria y corporativa).</td>
+                        <td class="percentage">40%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
 </body>
 </html>
